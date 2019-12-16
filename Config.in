@@ -1,0 +1,12 @@
+menuconfig YP_GOD
+    bool "yp is god"
+    default y
+    help 
+        is a test for menuconfig by yp
+
+if YP_GOD
+    config LAOPUO
+    default y
+    depends on YP_GOD
+    bool " huang bi xia"
+endif
