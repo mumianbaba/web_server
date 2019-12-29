@@ -1,5 +1,6 @@
 CONFIG_CLIENT = 1
 CONFIG_CLIENT_API = 1
+CONFIG_CLIENT_APP = 1
 
 
 include $(TOPDIR)/.config
@@ -7,14 +8,19 @@ include $(TOPDIR)/.config
 TARGE := client
 
 ifdef CONFIG_CLIENT
-
 ifdef CONFIG_CLIENT_API
 	CLIENT := $(CLIENT_PATH)/api/api.o
 endif
-
 endif
 
-CLIENT_SUBPATH := $(foreach n, $(CLIENT), $(dir $(n)))
+CLIENT_SUBPATH += $(foreach n, $(CLIENT), $(dir $(n)))
+
+
+ifdef CONFIG_CLIENT
+ifdef CONFIG_CLIENT_APP
+	CLIENT_SUBPATH += $(CLIENT_PATH)/app
+endif
+endif
 
 
 .PHONY: all $(TARGE)  subinfo clean
@@ -45,4 +51,5 @@ clean:
 	@for var in $(CLIENT_SUBPATH);do \
 		make -C $$var clean; \
 	done
+	make -C ./app clean
 

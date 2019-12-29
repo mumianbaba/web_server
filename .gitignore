@@ -1,0 +1,3 @@
+*.o
+*.d
+client/app/src/tcp_cli_app

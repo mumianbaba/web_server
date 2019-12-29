@@ -24,12 +24,13 @@ endif
 
 .PHONY: all app subinfo menuconfig clean
 
-all: app
+all: app 
 	echo "TOPDIR:${TOPDIR}"
 
 app:
 	@echo "make a app for you"
 	make -C $(CLIENT_PATH)
+
 
 subinfo:
 	make -C $(CLIENT_PATH) subinfo
